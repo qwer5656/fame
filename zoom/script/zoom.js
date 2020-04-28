@@ -29,6 +29,7 @@
         zoomlens.style.position="absolute";  
         zoomlens.style.opacity=".2";
         zoomlens.style.display="none";
+        Data.zoomlen.element.style.display="none";
         let clientx=data.left;
         let clienty=data.top;
         let display=false;
