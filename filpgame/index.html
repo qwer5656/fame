@@ -1,1 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Document</title>
+    <style>
+      * {
+        padding: 0;
+        margin: 0;
+        box-sizing: border-box;
+      }
+      body {
+        height: 100vh;
+        width: 100%;
+        display: flex;
+        background: linear-gradient(to left,#fff,#333);
+        
+      }
+      .memory_card
+      {
+          width: calc(25% - 10px);
+          height: calc(33.333% -10px);
+          margin: 5px;
+          position: relative;
+          transform: scale(1);
+         
+          background-color: azure;
+          transform-style: preserve-3d;
+          transition:transform .5s;
+      }
+     
+      .front_card,.back_card
+      {
+        
+        width: 100%;
+        height: 100%;
+        position: absolute;
+        padding: 10px;
+        border-radius: 5px;
+        backface-visibility: hidden;
+      }
+      .front_card{
+        transform: rotateY(180deg);
+      }
+      .flip{
+          transform: rotateY(180deg);
+         
+      }
+      .memory-game
+      {
+          width: 640px;
+          height: 640px;
+      
+          display: flex;
+          flex-wrap: wrap;
+          margin: auto;
+      }
+      .winwrap{
+          position: absolute;
+          top:50%;
+          left: 50%;
+          width: 400px;
+          height: 200px;
+          background:linear-gradient(to right,#55acee,#410093);
 
+          text-align: center;
+          padding-top:40px; 
+          border-radius: 10px;
+          transform: translate(-50%,-50%);
+          display: none;
+      }
+      .winwrap button
+      {
+         
+          width: 100px;
+          height: 50px;
+          font-size: 20px;
+          border-radius: 5px;
+          border: none;
+          font-weight: bold;
+      }
+      .yes
+      {
+        background:#df2029;
+        
+     
+        margin: 10px;
+      }
+      .no{
+        background:#007ee5;
+     
+        
+        margin: 10px;
+      }
+    </style>
+  </head>
+  <body>
+    <section class="memory-game">
+     
+    </section>
+    <div class="winwrap">
+        <h1>繼續遊戲嗎?</h1>
+        <div style="padding-top:30px">
+        <button class="yes">是</button>
+        <button class="no">否</button>
+    </div>
+    </div>
+    <script src="script.js"></script>
+  </body>
+</html>
