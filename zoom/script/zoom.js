@@ -28,6 +28,7 @@
         zoomlens.style.backgroundColor="#cecece";
         zoomlens.style.position="absolute";  
         zoomlens.style.opacity=".2";
+        zoomlens.style.display="none";
         let clientx=data.left;
         let clienty=data.top;
         let display=false;
