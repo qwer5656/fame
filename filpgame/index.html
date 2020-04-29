@@ -4,6 +4,7 @@
     <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
 <script src="https://www.gstatic.com/firebasejs/3.6.2/firebase.js"></script>
+<link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css'/>
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
     <title>Filp GAME</title>
 <link rel="stylesheet" href="./style/main.css" >
@@ -23,35 +24,61 @@
   </div>
     </div>
     <div class="menu">
+      <div class="rankbt"><i class="fas fa-star"></i></div>
       <div class="levelbt" onclick="start(1)">Level 1</div>
       <div class="levelbt" onclick="start(2)">Level 2</div>
       <div class="levelbt" onclick="start(3)">Level 3</div>
     </div>
     <div class="startmenu">
       <h1>輸入姓名</h1>
-      <input type="text" class="name">
+      <input type="text" class="name" maxlength="4">
       <button class="startbt levelbt">Start</button>
       <button class="linkbt levelbt">rank</button>
     </div>
-    <div class="rankmenu">
+    <div class="rankmenu" >
+      <div class="returnbt" onclick="returnbt()"><i class="fas fa-reply"></i></div>
+      <div class="closebt" onclick="closebt()"><i class="fas fa-times"></i></div>
       <h1>Rank</h1>
-      <div>name:大明</div>
+      <ul class="ranklevel">
+        <li onclick="setdata('level1')">level1</li>
+        <li onclick="setdata('level2')">level2</li>
+        <li onclick="setdata('level3')">level3</li>
+      </ul>
+      <div class="level1rank"></div>
     </div>
     <script src="script.js"></script>
     <script>
-      let game=new filp(document.querySelector(".memory-game"),1);
+      var config = {
+                databaseURL: "https://filp-a223d.firebaseio.com/"
+            };
+      firebase.initializeApp(config);
+      let game=new filp(document.querySelector(".memory-game"),firebase);
       let time=document.querySelector(".time");
       function start(Level)
       {
         game.init(Level);
         document.querySelector(".menu").style.display="none";
       }
-      var config = {
-                databaseURL: "https://filp-a223d.firebaseio.com/"
-            };
-       firebase.initializeApp(config);
-       let firebaseobj = firebase.database().ref("level3");
-      firebase.database().ref('level1').once('value').then(function(snapshot) {
+      function returnbt()
+      {
+        document.querySelector(".ranklevel").style.display="flex";
+        document.querySelector(".level1rank").style.display="none";
+        document.querySelector(".closebt").style.display="block";
+        document.querySelector(".returnbt").style.display="none";
+      }
+      function closebt()
+      {
+        document.querySelector(".rankmenu").style.display="none";
+      }
+      function setdata(level)
+      {
+        document.querySelector(".ranklevel").style.display="none";
+        document.querySelector(".level1rank").style.display="block";
+        document.querySelector(".closebt").style.display="none";
+        document.querySelector(".returnbt").style.display="block";
+        document.querySelector(".level1rank").innerHTML="";
+       let firebaseobj = firebase.database().ref(level);
+       firebaseobj.once('value').then(function(snapshot) {
         let obj=snapshot.val();
         let sortnum=[];
         for(var i in obj)
@@ -62,26 +89,17 @@
           return b.score-a.score;
 
         });
-        for(let i=0;i<rank.length;i++)
+        let len=rank.length>5?5:rank.length;
+        for(let i=0;i<len;i++)
         {
           let div=document.createElement("div");
-          
+          div.innerHTML=`<span class='Ranking'>${i+1}</span>
+          <span class='rankname'>${rank[i]["name"]}</span> 
+            <span class='rankscore'>00:${rank[i]["score"]}</span>`;
+          document.querySelector(".level1rank").appendChild(div);
         }
-          
-        
-        // obj.sort(function(a,b){
-          
-        // })
-       
-       
       });
-      //  firebase.database().ref('level1').update({
-      //    '-M64ATMV2qswqEgCCtEo':{
-      //      name:"12",
-      //      text:"3",
-      //    }
-
-      //  });
+    }
 
     </script>
   </body>

@@ -2,7 +2,7 @@
     obj.filp = create();
 }(this, function () {
 
-        return function (container) {
+        return function (container,firebase) {
             
             let hascardopen = false;
             let cardclick = true;
@@ -11,6 +11,7 @@
             let clock;
             let numtime=0;
             let gamelevel;
+            let name="";
             let sence={
                 startmenu:null,
                 levelmenu:null,
@@ -60,6 +61,10 @@
                                 document.querySelector(".Mask").style.display = "block";
                                 document.querySelector(".gamewin").innerText="Game Win";
                                 clearInterval(clock);
+                                firebase.database().ref(`level${gamelevel}`).push({
+                                    name:name,
+                                    score:numtime,
+                                });
                             }
                         }
 
@@ -212,9 +217,19 @@
               document.querySelector(".startbt").addEventListener("click",function(){
                   if(document.querySelector(".name").value!="")
                   {
+                      name=document.querySelector(".name").value;
                     sencechange("levelmenu");
                   }
               });
+             document.querySelector(".linkbt").addEventListener("click",function(){
+
+                sence.rankmenu.style.display="flex";
+            });
+            document.querySelector(".rankbt").addEventListener("click",function(){
+
+                sence.rankmenu.style.display="flex";
+            });
+ 
            }
 
 
