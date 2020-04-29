@@ -1,0 +1,187 @@
+* {
+        padding: 0;
+        margin: 0;
+        box-sizing: border-box;
+      }
+      body {
+        height: 100vh;
+        width: 100%;
+        display: flex;
+        background: linear-gradient(to left,#fff,#333);
+        
+      }
+      .memory_card
+      {
+          margin: 5px;
+          position: relative;
+          transform: scale(1);
+          transform-style: preserve-3d;
+          -webkit-transform-style: preserve-3d;
+          transition:transform .5s;
+          cursor: pointer;
+      }
+     
+      .front_card,.back_card
+      {
+        
+        width: 100%;
+        height: 100%;
+        position: absolute;
+        padding: 10px;
+        border-radius: 5px;
+        backface-visibility: hidden;
+        -webkit-backface-visibility: hidden;
+      }
+      .front_card{
+        transform: rotateY(180deg);
+        -webkit-transform: rotateY(180deg);
+      }
+      .flip{
+          transform: rotateY(180deg);
+          -webkit-transform: rotateY(180deg);
+         
+      }
+      .memory-game
+      {
+         width: 640px;
+         height: 640px;
+          display: flex;
+          flex-wrap: wrap;
+          margin: auto;
+          align-content: center;
+          justify-content: center;
+      }
+      .winwrap{
+          position: absolute;
+          top:50%;
+          left: 50%;
+          width: 400px;
+          height: 300px;
+          background: url("./img/fram.png");
+          background-size: 400px 300px;
+          text-align: center;
+          border-radius: 10px;
+          transform: translate(-50%,-50%);
+          
+      }
+      .winwrap button
+      {
+         
+          width: 100px;
+          height: 32px;
+          font-size: 19px;
+          border-radius: 5px;
+          border: none;
+          font-weight: bold;
+          outline: 0;
+        
+      }
+      .yes
+      {
+        background: url("./img/button1_up.png");
+
+        background-size: 100px 32px;
+        cursor: pointer;
+        color:white;
+        margin: 10px;
+      }
+      .yes:hover
+      {
+        background: url("./img/button1_down.png");
+        background-size: 100px 32px;
+      }
+      .no{
+        background: url("./img/button2_up.png");
+        background-size: 100px 32px;
+        cursor: pointer;
+        color:white;
+        
+        margin: 10px;
+      }
+      .no:hover
+      {
+        background: url("./img/button2_down.png");
+        background-size: 100px 32px;
+      }
+      .time{
+        position: absolute;
+        top:50px;
+        left: 50%;
+        transform: translateX(-50%);
+        font-size: 40px;
+        letter-spacing: 10px;
+        font-family: sans-serif;
+        font-weight: bold;
+      }
+      .menu,.startmenu
+      {
+        position: absolute;
+        top:50%;
+        left: 50%;
+        transform: translate(-50%,-50%);
+        border-radius: 50px;
+        width: 300px;
+        height: 350px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        background-color: rgb(30, 52, 76);
+        border: 18px solid rgb(12, 26, 39);
+      }
+      .menu{
+          display: none;
+      }
+      .startmenu h1{
+          padding: 0 0 15px 0;
+          color:rgb(243, 162, 44);
+      }
+      .name{
+          
+          border: 3px solid rgb(243, 162, 44);
+          
+          outline: 0;
+          padding: 5px;
+          font-size: 20px;
+          width: 70%;
+          font-weight: bold;
+          margin: 10px 0;
+          text-align: center;
+      }
+      .levelbt
+      {
+        border-radius: 20px;
+        color:white;
+        width: 180px;
+        padding: 5px;
+        font-size: 30px;
+        background-color: rgb(243, 162, 44);
+        margin: 20px 0px;
+        text-align: center;
+        box-shadow: 0px 7px 0px rgb(222, 66, 40),0px 3px 6px rgba(0, 0, 0, .9),inset 1px -1px 11px 4px rgba(246,113,36);
+        transition: .3s;
+        cursor: pointer;
+        user-select: none;
+        font-weight: bold;
+        border: 0;
+        outline: 0;
+      }
+      .startbt,.linkbt
+      {
+        margin: 10px 0px;
+      }
+      .levelbt:hover
+      {
+        box-shadow: 0px 3px 0px rgb(222, 66, 40),0px 3px 6px white,inset 1px -1px 11px 4px rgba(246,113,36);
+      }
+      .Mask
+      {
+        display: none;
+        width: 100vw;
+        position: fixed;
+        height: 100vh;
+        z-index: 999999;
+        transform:translate3d(0,0,0);
+        -webkit-transform:translate3d(0,0,0);
+        background-color: rgba(0, 0, 0, .6);
+      }

@@ -11,6 +11,16 @@
             let clock;
             let numtime=0;
             let gamelevel;
+            let sence={
+                startmenu:null,
+                levelmenu:null,
+                endmenu:null,
+                rankmenu:null,
+            }
+            sence.levelmenu=document.querySelector(".menu");
+            sence.startmenu=document.querySelector(".startmenu");
+            sence.endmenu=document.querySelector(".Mask");
+           sence.rankmenu=document.querySelector(".rankmenu");
             function flip(e) {
                 if (cardclick) {
                     let open = e.currentTarget.dataset.open;
@@ -90,6 +100,21 @@
 
                 }
             }
+            function sencechange(name){
+                console.log(1);
+                for(let i in sence)
+                {
+                    if(i===name)
+                    {
+                        sence[i].style.display="flex";
+                    }
+                    else
+                    {
+                        sence[i].style.display="none";
+                    }
+                }
+
+            }
             function reciprocal(obj)
             {
               let min=parseInt(numtime/60);
@@ -168,18 +193,28 @@
                 reciprocal(timeclock);
                 clock=setInterval(reciprocal,1000,timeclock);
             }
-            document.querySelector(".yes").addEventListener("click",function(){
-                judge("yes");
-              });
-              document.querySelector(".no").addEventListener("click",function(){
-                judge("no");
-              });
            this.init=function(level)
            {
               Container.innerHTML="";
               create(Container,level);
               gamelevel=level;
              
+             
+           }
+           initgame();
+           function initgame(){
+              document.querySelector(".yes").addEventListener("click",function(){
+                judge("yes");
+              });
+              document.querySelector(".no").addEventListener("click",function(){
+                judge("no");
+              });
+              document.querySelector(".startbt").addEventListener("click",function(){
+                  if(document.querySelector(".name").value!="")
+                  {
+                    sencechange("levelmenu");
+                  }
+              });
            }
 
 
