@@ -132,7 +132,7 @@
       .rankmenu 
       {
         justify-content: start;
-        position:absolute;
+        z-index: 999;
         display: none;
       }
       .rankmenu h1
