@@ -2,7 +2,7 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="viewport" content="width=device-width,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
     <title>Document</title>
     <style>
@@ -20,15 +20,12 @@
       }
       .memory_card
       {
-          width: calc(25% - 10px);
-          height: calc(33.333% -10px);
           margin: 5px;
           position: relative;
           transform: scale(1);
-         
-          background-color: azure;
           transform-style: preserve-3d;
           transition:transform .5s;
+          cursor: pointer;
       }
      
       .front_card,.back_card
@@ -50,63 +47,155 @@
       }
       .memory-game
       {
-          width: 640px;
-          height: 640px;
-      
+         width: 640px;
+         height: 640px;
           display: flex;
           flex-wrap: wrap;
           margin: auto;
+          align-content: center;
+          justify-content: center;
       }
       .winwrap{
           position: absolute;
           top:50%;
           left: 50%;
           width: 400px;
-          height: 200px;
-          background:linear-gradient(to right,#55acee,#410093);
-
+          height: 300px;
+          background: url("./img/fram.png");
+          background-size: 400px 300px;
           text-align: center;
-          padding-top:40px; 
           border-radius: 10px;
           transform: translate(-50%,-50%);
-          display: none;
+          
       }
       .winwrap button
       {
          
           width: 100px;
-          height: 50px;
-          font-size: 20px;
+          height: 32px;
+          font-size: 19px;
           border-radius: 5px;
           border: none;
           font-weight: bold;
+          outline: 0;
+        
       }
       .yes
       {
-        background:#df2029;
-        
-     
+        background: url("./img/button1_up.png");
+
+        background-size: 100px 32px;
+        cursor: pointer;
+        color:white;
         margin: 10px;
       }
+      .yes:hover
+      {
+        background: url("./img/button1_down.png");
+        background-size: 100px 32px;
+      }
       .no{
-        background:#007ee5;
-     
+        background: url("./img/button2_up.png");
+        background-size: 100px 32px;
+        cursor: pointer;
+        color:white;
         
         margin: 10px;
+      }
+      .no:hover
+      {
+        background: url("./img/button2_down.png");
+        background-size: 100px 32px;
+      }
+      .time{
+        position: absolute;
+        top:50px;
+        left: 50%;
+        transform: translateX(-50%);
+        font-size: 40px;
+        letter-spacing: 10px;
+        font-family: sans-serif;
+        font-weight: bold;
+      }
+      .menu
+      {
+        position: absolute;
+        top:50%;
+        left: 50%;
+        transform: translate(-50%,-50%);
+        border-radius: 50px;
+        width: 300px;
+        height: 350px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        background-color: rgb(30, 52, 76);
+        border: 18px solid rgb(12, 26, 39);
+      }
+      .levelbt
+      {
+        border-radius: 20px;
+        color:white;
+        width: 180px;
+        padding: 5px;
+        font-size: 30px;
+        background-color: rgb(243, 162, 44);
+        margin: 20px 0px;
+        text-align: center;
+        box-shadow: 0px 7px 0px rgb(222, 66, 40),0px 3px 6px rgba(0, 0, 0, .9),inset 1px -1px 11px 4px rgba(246,113,36);
+        transition: .3s;
+        cursor: pointer;
+        user-select: none;
+        font-weight: bold;
+        
+      }
+      .levelbt:hover
+      {
+        box-shadow: 0px 3px 0px rgb(222, 66, 40),0px 3px 6px white,inset 1px -1px 11px 4px rgba(246,113,36);
+      }
+      .Mask
+      {
+        display: none;
+        width: 100vw;
+        position: fixed;
+        height: 100vh;
+        z-index: 100;
+        background-color: rgba(0, 0, 0, .6);
       }
     </style>
   </head>
   <body>
     <section class="memory-game">
-     
+      
     </section>
+    <div class="Mask">
     <div class="winwrap">
-        <h1>繼續遊戲嗎?</h1>
+        <h1 style="padding:80px 0 20px 0;color:white;font-size: 40px;" class="gamewin">GAME Win</h1>
+        <br>
+        <h2 style="color:white">繼續遊戲嗎?</h2>
         <div style="padding-top:30px">
         <button class="yes">是</button>
         <button class="no">否</button>
     </div>
+  </div>
+    </div>
+    <div class="menu">
+      <div class="levelbt" onclick="start(1)">Level 1</div>
+      <div class="levelbt" onclick="start(2)">Level 2</div>
+      <div class="levelbt" onclick="start(3)">Level 3</div>
     </div>
     <script src="script.js"></script>
+    <script>
+      let game=new filp(document.querySelector(".memory-game"),1);
+      let time=document.querySelector(".time");
+      function start(Level)
+      {
+        game.init(Level);
+        document.querySelector(".menu").style.display="none";
+      }
+
+
+    </script>
   </body>
 </html>
